@@ -14,7 +14,10 @@ struct ContentView: View {
         VStack {
             List {
                 ForEach(OS.resources) { resouce in
-                    Text(resouce.name)
+                    VStack {
+                        Text(resouce.name)
+                        Text(resouce.beingUsedBy.debugDescription)
+                    }
                 }
                 .onDelete { index in
                     OS.resources.remove(atOffsets: index)
@@ -29,14 +32,21 @@ struct ContentView: View {
             .buttonStyle(.bordered)
             List {
                 ForEach(OS.processes) { process in
-                    Text(process.id.description)
+                    VStack{
+                        Text(process.id.description)
+                        Text(process.currentResource?.name ?? "nil")
+                        Text(process.requestedResource?.name ?? "nil")
+                        
+                    }
+
+                    
                 }
                 .onDelete { index in
                     OS.processes.remove(atOffsets: index)
                 }
             }
             Button {
-                OS.processFactory(askTime: 5, useTime: 5)
+                OS.processFactory(askTime: 1, useTime: 3)
             } label: {
                 Text("Criar Processo")
             }

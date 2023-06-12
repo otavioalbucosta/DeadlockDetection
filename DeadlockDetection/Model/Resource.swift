@@ -13,9 +13,9 @@ class Resource: GraphNode, ObservableObject, Identifiable {
     var name: String
     var id = UUID()
     var isBeingUsed = DispatchSemaphore(value: 1)
-    var beingRequestedBy: Process? {
+    var beingUsedBy: Process? {
         didSet{
-            next = beingRequestedBy!
+            next = beingUsedBy!
         }
     }
     

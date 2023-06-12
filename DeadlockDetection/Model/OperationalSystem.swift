@@ -46,7 +46,7 @@ class OperationalSystem: ObservableObject {
     }
     
     
-    func processFactory(askTime: Int, useTime: Int) -> Process {
+    func processFactory(askTime: Double, useTime: Double) -> Process {
         let process = Process(askResourceTimeSpan: askTime, useResourceTimeSpan: useTime)
         self.processes.append(process)
         return process

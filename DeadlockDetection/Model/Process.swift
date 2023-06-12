@@ -10,63 +10,69 @@ class Process: GraphNode, ObservableObject, Identifiable {
     var next: GraphNode?
     
     var id = UUID()
-    var currentResource: Resource?
-    private var usedResources = [Resource]()
-    var requestedResource: Resource?
-    let askResourceTimeSpan: Int
-    let useResourceTimeSpan: Int
+    @Published var currentResource: Resource?
+    @Published private var usedResources = [Resource]()
+    @Published var requestedResource: Resource?
+    let askResourceTimeSpan: Double
+    let useResourceTimeSpan: Double
     
-    func askNewResource() {
-        let availableResources = OperationalSystem.shared.resources.filter { element in
-            return OperationalSystem.shared.resources.contains(where: {$0.id == element.id})
+    func askNewResource(timer: Timer) {
+        
+        if self.requestedResource == nil {
+            let availableResources = OperationalSystem.shared.resources.filter { element in
+                return OperationalSystem.shared.resources.contains(where: {$0.id == element.id})
+            }
+            if let resource = availableResources.randomElement() {
+                self.requestedResource = resource
+            }else{
+                timer.invalidate()
+            }
         }
-        if let resource = availableResources.randomElement() {
-            resource.beingRequestedBy = self
-            self.requestedResource = resource
-            resource.isBeingUsed.wait()
-            self.currentResource = resource
-            useResource()
-        }else{
-            print("There's no available resources")
+        else if self.requestedResource != nil && self.currentResource == nil {
+            self.requestedResource!.isBeingUsed.wait()
+            self.currentResource = self.requestedResource
+            self.useResource()
         }
+        
     }
     
     func useResource() {
-        requestedResource = nil
-        var counting: Int = useResourceTimeSpan
-        while counting > 0 {
-            Timer.scheduledTimer(withTimeInterval: 1.0, repeats: false) { _ in
+        if currentResource != nil {
+            requestedResource = nil
+            var counting: Double = useResourceTimeSpan
+            Timer.scheduledTimer(withTimeInterval: 1, repeats: true, block: { timer in
                 counting -= 1
                 print("Resource \(self.currentResource!.name) sendo usada! \(counting) segundos restantes")
-                
-            }
+                if counting <= 0 {
+                    timer.invalidate()
+                    self.freeResource()
+                }
+            })
+            
         }
-        freeResource()
-        
     }
-    
-    func freeResource() {
 
-        if let resource = self.currentResource {
-            resource.isBeingUsed.signal()
-            usedResources.append(resource)
-        }
-        self.currentResource = nil
+func freeResource() {
+    if let resource = self.currentResource {
+        resource.isBeingUsed.signal()
+        usedResources.append(resource)
+    }
+    self.currentResource = nil
+}
+
+func processRoutine() {
+    
+    Timer.scheduledTimer(withTimeInterval: askResourceTimeSpan, repeats: true) { timer in
+        self.askNewResource(timer: timer)
     }
     
-    func processRoutine() {
-        DispatchQueue(label: "com.DeadlockDetection.ProcessRoutine", qos: .utility, attributes: .concurrent).async{
-            while OperationalSystem.shared.resources.count != self.usedResources.count {
-                
-            }
-        }
-        
-    }
-    
-    init(askResourceTimeSpan: Int, useResourceTimeSpan: Int) {
-        self.askResourceTimeSpan = askResourceTimeSpan
-        self.useResourceTimeSpan = useResourceTimeSpan
-    }
-    
-    
+}
+
+init(askResourceTimeSpan: Double, useResourceTimeSpan: Double) {
+    self.askResourceTimeSpan = askResourceTimeSpan
+    self.useResourceTimeSpan = useResourceTimeSpan
+    processRoutine()
+}
+
+
 }
