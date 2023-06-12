@@ -6,8 +6,21 @@
 //
 
 import Foundation
-struct Resource {
+class Resource: GraphNode, ObservableObject, Identifiable {
+    
+    
+    var next: GraphNode?
     var name: String
-    var id: UUID
+    var id = UUID()
     var isBeingUsed = DispatchSemaphore(value: 1)
+    var beingRequestedBy: Process? {
+        didSet{
+            next = beingRequestedBy!
+        }
+    }
+    
+    
+    init(name: String) {
+        self.name = name
+    }
 }
