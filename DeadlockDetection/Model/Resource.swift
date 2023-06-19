@@ -8,16 +8,14 @@
 import Foundation
 class Resource: GraphNode, ObservableObject, Identifiable {
     
+    var next: [GraphNode] = []
+    var isVisited: Bool = false
     
-    var next: GraphNode?
+    
     var name: String
     var id = UUID()
     var isBeingUsed = DispatchSemaphore(value: 1)
-    var beingUsedBy: Process? {
-        didSet{
-            next = beingUsedBy!
-        }
-    }
+    var beingRequestedBy = [Process]()
     
     
     init(name: String) {

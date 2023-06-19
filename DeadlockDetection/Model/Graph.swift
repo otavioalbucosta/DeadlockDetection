@@ -9,5 +9,6 @@ import Foundation
 
 protocol GraphNode {
     var id: UUID {get set}
-    var next: GraphNode? {get set}
+    var next: [GraphNode] {get set}
+    var isVisited: Bool {get set}
 }

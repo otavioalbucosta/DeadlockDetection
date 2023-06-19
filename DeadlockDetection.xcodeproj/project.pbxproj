@@ -15,6 +15,7 @@
 		2977A1FE2A2F9E83001BCC34 /* Resource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2977A1FD2A2F9E83001BCC34 /* Resource.swift */; };
 		2977A2002A2F9EA6001BCC34 /* Process.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2977A1FF2A2F9EA6001BCC34 /* Process.swift */; };
 		2977A2022A361B72001BCC34 /* Graph.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2977A2012A361B72001BCC34 /* Graph.swift */; };
+		2977A20C2A3FF1A2001BCC34 /* GraphComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2977A20B2A3FF1A2001BCC34 /* GraphComponent.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		2977A1FD2A2F9E83001BCC34 /* Resource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Resource.swift; sourceTree = "<group>"; };
 		2977A1FF2A2F9EA6001BCC34 /* Process.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Process.swift; sourceTree = "<group>"; };
 		2977A2012A361B72001BCC34 /* Graph.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Graph.swift; sourceTree = "<group>"; };
+		2977A20B2A3FF1A2001BCC34 /* GraphComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphComponent.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,9 +62,9 @@
 		2977A1EA2A2F9D96001BCC34 /* DeadlockDetection */ = {
 			isa = PBXGroup;
 			children = (
+				2977A20D2A407A1D001BCC34 /* View */,
 				2977A1FC2A2F9E6F001BCC34 /* Model */,
 				2977A1EB2A2F9D96001BCC34 /* DeadlockDetectionApp.swift */,
-				2977A1ED2A2F9D96001BCC34 /* ContentView.swift */,
 				2977A1EF2A2F9D98001BCC34 /* Assets.xcassets */,
 				2977A1F12A2F9D98001BCC34 /* DeadlockDetection.entitlements */,
 				2977A1F22A2F9D98001BCC34 /* Preview Content */,
@@ -87,6 +89,15 @@
 				2977A2012A361B72001BCC34 /* Graph.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		2977A20D2A407A1D001BCC34 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				2977A1ED2A2F9D96001BCC34 /* ContentView.swift */,
+				2977A20B2A3FF1A2001BCC34 /* GraphComponent.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -165,6 +176,7 @@
 				2977A1FE2A2F9E83001BCC34 /* Resource.swift in Sources */,
 				2977A1EE2A2F9D96001BCC34 /* ContentView.swift in Sources */,
 				2977A1EC2A2F9D96001BCC34 /* DeadlockDetectionApp.swift in Sources */,
+				2977A20C2A3FF1A2001BCC34 /* GraphComponent.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

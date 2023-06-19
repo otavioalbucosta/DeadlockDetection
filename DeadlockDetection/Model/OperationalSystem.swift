@@ -16,41 +16,63 @@ class OperationalSystem: ObservableObject {
     
     func setTimeInterval(time:Int){
         self.timeInterval = time
+        OSRoutine()
     }
     
     init(timeInterval:Int) {
         self.timeInterval = timeInterval
     }
     
-    func dfs(graph: GraphNode) -> Bool{
-        var currentGraph = graph
-        var graphSet = [GraphNode]()
+    func dfs(root: GraphNode?, graphSet: [GraphNode] = [] ) -> [GraphNode]{
+        var set = graphSet
+        guard var root = root else { return [] }
         
-        repeat {
-            if graphSet.contains(where: {$0.id == currentGraph.id}) {
-                return false
-            }else{
-                graphSet.append(currentGraph)
+        print(root.id.description.prefix(5))
+        root.isVisited = true
+        set.append(root)
+        for edge in root.next {
+            if !edge.isVisited {
+                set.append(contentsOf: dfs(root: edge))
+            }else {
+                set.append(edge)
+                return set
             }
-            currentGraph = currentGraph.next!
-        } while currentGraph.next != nil
-        
-        return true
-        
+        }
+        return set
     }
     
-    func resourceFactory(name: String) -> Resource{
+    func resourceFactory(name: String){
         let resource = Resource(name: name)
         self.resources.append(resource)
-        return resource
     }
     
     
-    func processFactory(askTime: Double, useTime: Double) -> Process {
+    func processFactory(askTime: Double, useTime: Double){
         let process = Process(askResourceTimeSpan: askTime, useResourceTimeSpan: useTime)
         self.processes.append(process)
-        return process
     }
     
+    func OSRoutine() {
+        Timer.scheduledTimer(withTimeInterval: TimeInterval(timeInterval), repeats: true) { [self] timer in
+            var res = dfs(root: resources.randomElement())
+            print(res.map{$0.id.description.prefix(4)})
+
+            processes.forEach { element in
+                element.isVisited = false
+            }
+            resources.forEach { element in
+                element.isVisited = false
+            }
+
+        }
+    }
+    
+    func updateView() {
+        DispatchQueue.main.async{
+            self.processes = self.processes.map{$0}
+            self.resources = self.resources.map{$0}
+        }
+        
+    }
     
 }
