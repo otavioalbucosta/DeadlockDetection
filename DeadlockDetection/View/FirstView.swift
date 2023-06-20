@@ -39,11 +39,11 @@ struct FirstView: View {
 
                         Spacer()
 
-                        Button {
-                            changedView.toggle()
-                            print(changedView)
-                        } label: { }
-                            .buttonStyle(StartButtonStyle(text: "Começar")).foregroundColor(.black)
+                        NavigationLink {
+                            GraphView()
+                        } label: {
+                            
+                        }   .buttonStyle(StartButtonStyle(text: "Começar")).foregroundColor(.black)
                             .frame(minWidth: 180, idealWidth: 209, maxWidth: 209, minHeight: 40, idealHeight: 68, maxHeight: 68)
                             .padding(.bottom)
 
@@ -54,9 +54,6 @@ struct FirstView: View {
                 .background(Color("DullPurple"))
                 .ignoresSafeArea(.all, edges: [.bottom,.horizontal])
                 .frame(width: geometry.size.width, height: geometry.size.height)
-            }
-            .navigationDestination(isPresented: $changedView) {
-                GraphView()
             }
 
         }.background(Color("DullPurple"))
