@@ -7,10 +7,11 @@
 
 import Foundation
 class Resource: GraphNode, ObservableObject, Identifiable {
-    
+
     var next: [GraphNode] = []
     var isVisited: Bool = false
-    
+    var position: CGPoint = .zero
+
     var name: String
     var id = UUID()
     var isBeingUsed = DispatchSemaphore(value: 1)

@@ -7,8 +7,10 @@
 
 import Foundation
 class Process: GraphNode, ObservableObject, Identifiable {
+
     var next = [GraphNode]()
     var isVisited: Bool = false
+    var position: CGPoint = .zero
     
     var id = UUID()
     @Published var currentResources = [(resource: Resource, time: Int)]()

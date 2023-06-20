@@ -29,7 +29,10 @@ struct ProcessComponent: View {
                         Text("x segundos")
                     }
 
-                }.padding()
+                }
+                .padding()
+                .foregroundColor(.black)
+                .background(.blue.opacity(0.2))
 
                 //                Circle()
                 //                    .overlay {

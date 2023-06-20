@@ -18,9 +18,21 @@ struct GraphView: View {
                 HStack {
                     VStack(alignment: .center) {
                         RoundedRectangle(cornerRadius: 15).fill(Color("DarkerPurple")).overlay {
-                            VStack {
-                                ForEach(OS.processes) { process in
-                                    ProcessComponent(IDProcess: process.id.description)
+                            GeometryReader { geo in
+                                ZStack {
+                                    ForEach(OS.processes) { process in
+                                        ProcessComponent(IDProcess: process.id.description)
+                                            .frame(width: 100, height: 100)
+                                            .position(CGPoint(x: 200, y: 200))
+                                            .gesture(
+                                                DragGesture(minimumDistance: 0)
+                                                    .onChanged { value in
+                                                        process.position = value.location
+
+                                                        print(value.location)
+                                                    }
+                                            )
+                                    }
                                 }
                             }
                         }
