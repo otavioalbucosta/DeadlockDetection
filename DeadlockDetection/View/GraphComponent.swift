@@ -9,6 +9,7 @@ import SwiftUI
 
 struct GraphComponent: View {
     @State var graphID: UUID
+    
     var body: some View {
         Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
     }

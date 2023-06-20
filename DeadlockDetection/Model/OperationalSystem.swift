@@ -12,16 +12,19 @@ class OperationalSystem: ObservableObject {
     @Published var processes = [Process]()
     @Published var timeInterval: Int
     @Published var deadlockFound: Bool = false
+    @Published var timeRemaining: Int
     
     static var shared = OperationalSystem(timeInterval: 5)
     
     func setTimeInterval(time:Int){
         self.timeInterval = time
+        self.timeRemaining = time
         OSRoutine()
     }
     
     init(timeInterval:Int) {
         self.timeInterval = timeInterval
+        self.timeRemaining = timeInterval
     }
     
     func dfs(root: GraphNode?, graphSet: [GraphNode] = [] ) -> [GraphNode]{
@@ -33,11 +36,11 @@ class OperationalSystem: ObservableObject {
         set.append(root)
         for edge in root.next {
             if !edge.isVisited {
+//                criar grafo
                 set.append(contentsOf: dfs(root: edge))
             }else {
                 set.append(edge)
                 break
-                return set
             }
         }
         return set
@@ -49,19 +52,21 @@ class OperationalSystem: ObservableObject {
     }
     
     
-    func processFactory(askTime: Double, useTime: Double){
-        let process = Process(askResourceTimeSpan: askTime, useResourceTimeSpan: useTime)
-        self.processes.append(process)
+    func processFactory(askTime: Double, useTime: Double) {
+        if processes.count <= 10 {
+            let process = Process(askResourceTimeSpan: askTime, useResourceTimeSpan: useTime)
+            self.processes.append(process)
+        } else {
+            print("Não permito criação de mais de 10 processos.")
+        }
     }
 
     func warnDeadlock(result: [GraphNode]){
         if var lastIndex = result.lastIndex(where: {$0.id == result[0].id}) {
-            if lastIndex != 0{
+            if lastIndex != 0 {
                 self.deadlockFound = true
             }
        }
-
-
 
     }
     
@@ -78,6 +83,13 @@ class OperationalSystem: ObservableObject {
                 element.isVisited = false
             }
 
+        }
+
+        Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { [self] timer in
+            timeRemaining -= 1
+            if timeRemaining <= 0 {
+                timeRemaining = timeInterval
+            }
         }
     }
     

@@ -7,9 +7,6 @@
 
 import SwiftUI
 
-
-
-
 struct CustomButton: ButtonStyle {
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
@@ -22,14 +19,18 @@ struct CustomButton: ButtonStyle {
 }
 
 struct ProcessElement: View {
+    var IDProcess: String
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        RoundedRectangle(cornerRadius: 20).overlay {
+            Text(IDProcess)
+                .foregroundColor(.black)
+        }.foregroundColor(.gray)
     }
 }
 
 struct ProcessElement_Previews: PreviewProvider {
     static var previews: some View {
-        ProcessElement()
+        ProcessElement(IDProcess: "HAHAHAHAHA")
     }
 }
 
