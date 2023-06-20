@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct ResourceElement: View {
+struct ResourceComponent: View {
     var IDResource: String
     var body: some View {
         Circle().overlay {
@@ -19,6 +19,6 @@ struct ResourceElement: View {
 
 struct ResourceElement_Previews: PreviewProvider {
     static var previews: some View {
-        ResourceElement(IDResource: "AH MDS")
+        ResourceComponent(IDResource: "AH MDS")
     }
 }

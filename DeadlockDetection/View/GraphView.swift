@@ -16,12 +16,11 @@ struct GraphView: View {
             VStack {
                 Text("Deadlock Detection").font(.title).bold()
                 HStack {
-                    VStack {
+                    VStack(alignment: .center) {
                         RoundedRectangle(cornerRadius: 15).fill(Color("DarkerPurple")).overlay {
                             VStack {
-                                //
                                 ForEach(OS.processes) { process in
-                                    ProcessElement(IDProcess: process.id.description)
+                                    ProcessComponent(IDProcess: process.id.description)
                                 }
                             }
                         }
@@ -32,9 +31,15 @@ struct GraphView: View {
                                     Text("Ocorreu deadlock: \(OS.deadlockFound.description)")
                                 }.font(.body)
                             }.background(Color("DarkerPurple"))
-                            Button("Novo processo") {
+                            Button {
                                 OS.processFactory(askTime: 1, useTime: 5)
-                            }.buttonStyle(CustomButton())
+                            } label: {
+                            }
+                            .buttonStyle(StartButtonStyle(text: "Novo Processo", size: 24))
+                            .frame(width: geometry.size.width*0.14,
+                                   height:geometry.size.width*0.06)
+                            .foregroundColor(.black)
+                            .padding(.horizontal)
                             Spacer()
 
                         }

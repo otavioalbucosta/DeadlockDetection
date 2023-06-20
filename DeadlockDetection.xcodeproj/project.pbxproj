@@ -18,10 +18,10 @@
 		2977A20C2A3FF1A2001BCC34 /* GraphComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2977A20B2A3FF1A2001BCC34 /* GraphComponent.swift */; };
 		7ED557C52A4100B2009C3A35 /* FirstView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ED557C42A4100B2009C3A35 /* FirstView.swift */; };
 		7ED557C82A410118009C3A35 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ED557C72A410118009C3A35 /* Extension.swift */; };
-		7ED557CA2A411CA4009C3A35 /* StartButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ED557C92A411CA4009C3A35 /* StartButton.swift */; };
+		7ED557CA2A411CA4009C3A35 /* StartButtonComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ED557C92A411CA4009C3A35 /* StartButtonComponent.swift */; };
 		7ED557CD2A41ACED009C3A35 /* GraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ED557CC2A41ACED009C3A35 /* GraphView.swift */; };
-		7ED557CF2A41B12D009C3A35 /* ProcessElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ED557CE2A41B12D009C3A35 /* ProcessElement.swift */; };
-		7ED557DC2A422186009C3A35 /* ResourceElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ED557DB2A422186009C3A35 /* ResourceElement.swift */; };
+		7ED557CF2A41B12D009C3A35 /* ProcessComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ED557CE2A41B12D009C3A35 /* ProcessComponent.swift */; };
+		7ED557DC2A422186009C3A35 /* ResourceComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ED557DB2A422186009C3A35 /* ResourceComponent.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,10 +38,10 @@
 		2977A20B2A3FF1A2001BCC34 /* GraphComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphComponent.swift; sourceTree = "<group>"; };
 		7ED557C42A4100B2009C3A35 /* FirstView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstView.swift; sourceTree = "<group>"; };
 		7ED557C72A410118009C3A35 /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
-		7ED557C92A411CA4009C3A35 /* StartButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartButton.swift; sourceTree = "<group>"; };
+		7ED557C92A411CA4009C3A35 /* StartButtonComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartButtonComponent.swift; sourceTree = "<group>"; };
 		7ED557CC2A41ACED009C3A35 /* GraphView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphView.swift; sourceTree = "<group>"; };
-		7ED557CE2A41B12D009C3A35 /* ProcessElement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProcessElement.swift; sourceTree = "<group>"; };
-		7ED557DB2A422186009C3A35 /* ResourceElement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourceElement.swift; sourceTree = "<group>"; };
+		7ED557CE2A41B12D009C3A35 /* ProcessComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProcessComponent.swift; sourceTree = "<group>"; };
+		7ED557DB2A422186009C3A35 /* ResourceComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourceComponent.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,10 +74,12 @@
 		2977A1EA2A2F9D96001BCC34 /* DeadlockDetection */ = {
 			isa = PBXGroup;
 			children = (
-				7ED557C62A41010B009C3A35 /* Resources */,
-				2977A20D2A407A1D001BCC34 /* View */,
-				2977A1FC2A2F9E6F001BCC34 /* Model */,
 				2977A1EB2A2F9D96001BCC34 /* DeadlockDetectionApp.swift */,
+				2977A1ED2A2F9D96001BCC34 /* ContentView.swift */,
+				7ED557C62A41010B009C3A35 /* Resources */,
+				2977A1FC2A2F9E6F001BCC34 /* Model */,
+				7ED557CB2A413B87009C3A35 /* Components */,
+				2977A20D2A407A1D001BCC34 /* View */,
 				2977A1EF2A2F9D98001BCC34 /* Assets.xcassets */,
 				2977A1F12A2F9D98001BCC34 /* DeadlockDetection.entitlements */,
 				2977A1F22A2F9D98001BCC34 /* Preview Content */,
@@ -107,12 +109,8 @@
 		2977A20D2A407A1D001BCC34 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				2977A1ED2A2F9D96001BCC34 /* ContentView.swift */,
-				2977A20B2A3FF1A2001BCC34 /* GraphComponent.swift */,
-				7ED557CB2A413B87009C3A35 /* Inicio */,
+				7ED557C42A4100B2009C3A35 /* FirstView.swift */,
 				7ED557CC2A41ACED009C3A35 /* GraphView.swift */,
-				7ED557CE2A41B12D009C3A35 /* ProcessElement.swift */,
-				7ED557DB2A422186009C3A35 /* ResourceElement.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -125,13 +123,15 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
-		7ED557CB2A413B87009C3A35 /* Inicio */ = {
+		7ED557CB2A413B87009C3A35 /* Components */ = {
 			isa = PBXGroup;
 			children = (
-				7ED557C42A4100B2009C3A35 /* FirstView.swift */,
-				7ED557C92A411CA4009C3A35 /* StartButton.swift */,
+				2977A20B2A3FF1A2001BCC34 /* GraphComponent.swift */,
+				7ED557CE2A41B12D009C3A35 /* ProcessComponent.swift */,
+				7ED557DB2A422186009C3A35 /* ResourceComponent.swift */,
+				7ED557C92A411CA4009C3A35 /* StartButtonComponent.swift */,
 			);
-			path = Inicio;
+			path = Components;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -206,14 +206,14 @@
 			files = (
 				7ED557C82A410118009C3A35 /* Extension.swift in Sources */,
 				2977A2022A361B72001BCC34 /* Graph.swift in Sources */,
-				7ED557CA2A411CA4009C3A35 /* StartButton.swift in Sources */,
+				7ED557CA2A411CA4009C3A35 /* StartButtonComponent.swift in Sources */,
 				2977A1FB2A2F9E3E001BCC34 /* OperationalSystem.swift in Sources */,
-				7ED557DC2A422186009C3A35 /* ResourceElement.swift in Sources */,
+				7ED557DC2A422186009C3A35 /* ResourceComponent.swift in Sources */,
 				7ED557CD2A41ACED009C3A35 /* GraphView.swift in Sources */,
 				2977A2002A2F9EA6001BCC34 /* Process.swift in Sources */,
 				2977A1FE2A2F9E83001BCC34 /* Resource.swift in Sources */,
 				2977A1EE2A2F9D96001BCC34 /* ContentView.swift in Sources */,
-				7ED557CF2A41B12D009C3A35 /* ProcessElement.swift in Sources */,
+				7ED557CF2A41B12D009C3A35 /* ProcessComponent.swift in Sources */,
 				7ED557C52A4100B2009C3A35 /* FirstView.swift in Sources */,
 				2977A1EC2A2F9D96001BCC34 /* DeadlockDetectionApp.swift in Sources */,
 				2977A20C2A3FF1A2001BCC34 /* GraphComponent.swift in Sources */,
