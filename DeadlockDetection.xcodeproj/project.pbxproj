@@ -16,6 +16,11 @@
 		2977A2002A2F9EA6001BCC34 /* Process.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2977A1FF2A2F9EA6001BCC34 /* Process.swift */; };
 		2977A2022A361B72001BCC34 /* Graph.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2977A2012A361B72001BCC34 /* Graph.swift */; };
 		2977A20C2A3FF1A2001BCC34 /* GraphComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2977A20B2A3FF1A2001BCC34 /* GraphComponent.swift */; };
+		7ED557C52A4100B2009C3A35 /* FirstView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ED557C42A4100B2009C3A35 /* FirstView.swift */; };
+		7ED557C82A410118009C3A35 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ED557C72A410118009C3A35 /* Extension.swift */; };
+		7ED557CA2A411CA4009C3A35 /* StartButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ED557C92A411CA4009C3A35 /* StartButton.swift */; };
+		7ED557CD2A41ACED009C3A35 /* GraphVIew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ED557CC2A41ACED009C3A35 /* GraphVIew.swift */; };
+		7ED557CF2A41B12D009C3A35 /* ProcessElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ED557CE2A41B12D009C3A35 /* ProcessElement.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +35,11 @@
 		2977A1FF2A2F9EA6001BCC34 /* Process.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Process.swift; sourceTree = "<group>"; };
 		2977A2012A361B72001BCC34 /* Graph.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Graph.swift; sourceTree = "<group>"; };
 		2977A20B2A3FF1A2001BCC34 /* GraphComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphComponent.swift; sourceTree = "<group>"; };
+		7ED557C42A4100B2009C3A35 /* FirstView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstView.swift; sourceTree = "<group>"; };
+		7ED557C72A410118009C3A35 /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
+		7ED557C92A411CA4009C3A35 /* StartButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartButton.swift; sourceTree = "<group>"; };
+		7ED557CC2A41ACED009C3A35 /* GraphVIew.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphVIew.swift; sourceTree = "<group>"; };
+		7ED557CE2A41B12D009C3A35 /* ProcessElement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProcessElement.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +72,7 @@
 		2977A1EA2A2F9D96001BCC34 /* DeadlockDetection */ = {
 			isa = PBXGroup;
 			children = (
+				7ED557C62A41010B009C3A35 /* Resources */,
 				2977A20D2A407A1D001BCC34 /* View */,
 				2977A1FC2A2F9E6F001BCC34 /* Model */,
 				2977A1EB2A2F9D96001BCC34 /* DeadlockDetectionApp.swift */,
@@ -96,8 +107,28 @@
 			children = (
 				2977A1ED2A2F9D96001BCC34 /* ContentView.swift */,
 				2977A20B2A3FF1A2001BCC34 /* GraphComponent.swift */,
+				7ED557CB2A413B87009C3A35 /* Inicio */,
+				7ED557CC2A41ACED009C3A35 /* GraphVIew.swift */,
+				7ED557CE2A41B12D009C3A35 /* ProcessElement.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		7ED557C62A41010B009C3A35 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				7ED557C72A410118009C3A35 /* Extension.swift */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		7ED557CB2A413B87009C3A35 /* Inicio */ = {
+			isa = PBXGroup;
+			children = (
+				7ED557C42A4100B2009C3A35 /* FirstView.swift */,
+				7ED557C92A411CA4009C3A35 /* StartButton.swift */,
+			);
+			path = Inicio;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -170,11 +201,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7ED557C82A410118009C3A35 /* Extension.swift in Sources */,
 				2977A2022A361B72001BCC34 /* Graph.swift in Sources */,
+				7ED557CA2A411CA4009C3A35 /* StartButton.swift in Sources */,
 				2977A1FB2A2F9E3E001BCC34 /* OperationalSystem.swift in Sources */,
+				7ED557CD2A41ACED009C3A35 /* GraphVIew.swift in Sources */,
 				2977A2002A2F9EA6001BCC34 /* Process.swift in Sources */,
 				2977A1FE2A2F9E83001BCC34 /* Resource.swift in Sources */,
 				2977A1EE2A2F9D96001BCC34 /* ContentView.swift in Sources */,
+				7ED557CF2A41B12D009C3A35 /* ProcessElement.swift in Sources */,
+				7ED557C52A4100B2009C3A35 /* FirstView.swift in Sources */,
 				2977A1EC2A2F9D96001BCC34 /* DeadlockDetectionApp.swift in Sources */,
 				2977A20C2A3FF1A2001BCC34 /* GraphComponent.swift in Sources */,
 			);
@@ -301,7 +337,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"DeadlockDetection/Preview Content\"";
-				DEVELOPMENT_TEAM = 8YQ35HP37L;
+				DEVELOPMENT_TEAM = 44U668YQTW;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -339,7 +375,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"DeadlockDetection/Preview Content\"";
-				DEVELOPMENT_TEAM = 8YQ35HP37L;
+				DEVELOPMENT_TEAM = 44U668YQTW;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;

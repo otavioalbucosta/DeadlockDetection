@@ -11,6 +11,7 @@ class OperationalSystem: ObservableObject {
     @Published var resources = [Resource]()
     @Published var processes = [Process]()
     @Published var timeInterval: Int
+    @Published var deadlockFound: Bool = false
     
     static var shared = OperationalSystem(timeInterval: 5)
     
@@ -35,6 +36,7 @@ class OperationalSystem: ObservableObject {
                 set.append(contentsOf: dfs(root: edge))
             }else {
                 set.append(edge)
+                break
                 return set
             }
         }
@@ -51,11 +53,23 @@ class OperationalSystem: ObservableObject {
         let process = Process(askResourceTimeSpan: askTime, useResourceTimeSpan: useTime)
         self.processes.append(process)
     }
+
+    func warnDeadlock(result: [GraphNode]){
+        if var lastIndex = result.lastIndex(where: {$0.id == result[0].id}) {
+            if lastIndex != 0{
+                self.deadlockFound = true
+            }
+       }
+
+
+
+    }
     
     func OSRoutine() {
         Timer.scheduledTimer(withTimeInterval: TimeInterval(timeInterval), repeats: true) { [self] timer in
-            var res = dfs(root: resources.randomElement())
+            var res = dfs(root: processes.randomElement())
             print(res.map{$0.id.description.prefix(4)})
+            warnDeadlock(result: res)
 
             processes.forEach { element in
                 element.isVisited = false
