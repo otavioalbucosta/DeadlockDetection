@@ -15,7 +15,7 @@ struct ProcessComponent: View {
 
     var body: some View {
         GeometryReader { geometry in
-            ZStack {x
+            ZStack {
                 RoundedRectangle(cornerRadius: 20).fill(process.isSleeping ? .gray : Color.randomColor())
 
                     .overlay {
@@ -25,7 +25,21 @@ struct ProcessComponent: View {
                                 .font(.system(size: 18))
                                 .truncationMode(.tail)
 
-                            Text("Status do processo")
+
+                            Text("Recursos utilizados:")
+                                .foregroundColor(.black)
+                                .font(.system(size: 12))
+                            ForEach(process.currentResources, id: \.self.resource.id) { res in
+                                Text(res.resource.name)
+                                    .foregroundColor(.black)
+                                    .font(.system(size: 10))
+                            }
+
+                            Text("Recurso requisitado:")
+                                .foregroundColor(.black)
+                                .font(.system(size: 12))
+
+                            Text(process.requestedResource?.name ?? "")
                                 .foregroundColor(.black)
                                 .font(.system(size: 8))
 
@@ -38,7 +52,7 @@ struct ProcessComponent: View {
                                     .font(.system(size: 8))
                                 
                                 Spacer()
-                                Text("12 s")
+                                Text(process.currentResources.first?.time.description ?? "")
                                     .multilineTextAlignment(.trailing)
                                     .foregroundColor(.black)
                                     .font(.system(size: 15)).bold()

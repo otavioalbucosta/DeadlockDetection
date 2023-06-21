@@ -25,6 +25,7 @@
 		7ED557E02A426C3C009C3A35 /* ProcessStatusComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ED557DF2A426C3C009C3A35 /* ProcessStatusComponent.swift */; };
 		7ED557E22A428590009C3A35 /* InputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ED557E12A428590009C3A35 /* InputView.swift */; };
 		7ED557E42A42975F009C3A35 /* setResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ED557E32A42975F009C3A35 /* setResource.swift */; };
+		7ED557F22A43438C009C3A35 /* setProcess.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ED557F12A43438C009C3A35 /* setProcess.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,6 +49,7 @@
 		7ED557DF2A426C3C009C3A35 /* ProcessStatusComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProcessStatusComponent.swift; sourceTree = "<group>"; };
 		7ED557E12A428590009C3A35 /* InputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputView.swift; sourceTree = "<group>"; };
 		7ED557E32A42975F009C3A35 /* setResource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = setResource.swift; sourceTree = "<group>"; };
+		7ED557F12A43438C009C3A35 /* setProcess.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = setProcess.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,6 +120,7 @@
 				7ED557C42A4100B2009C3A35 /* FirstView.swift */,
 				7ED557E12A428590009C3A35 /* InputView.swift */,
 				7ED557E32A42975F009C3A35 /* setResource.swift */,
+				7ED557F12A43438C009C3A35 /* setProcess.swift */,
 				7ED557CC2A41ACED009C3A35 /* GraphView.swift */,
 				29371D8B2A4278F90062FF38 /* CurvedLine.swift */,
 			);
@@ -219,6 +222,7 @@
 				7ED557CA2A411CA4009C3A35 /* StartButtonComponent.swift in Sources */,
 				7ED557E02A426C3C009C3A35 /* ProcessStatusComponent.swift in Sources */,
 				2977A1FB2A2F9E3E001BCC34 /* OperationalSystem.swift in Sources */,
+				7ED557F22A43438C009C3A35 /* setProcess.swift in Sources */,
 				7ED557DC2A422186009C3A35 /* ResourceComponent.swift in Sources */,
 				7ED557CD2A41ACED009C3A35 /* GraphView.swift in Sources */,
 				29371D8C2A4278F90062FF38 /* CurvedLine.swift in Sources */,

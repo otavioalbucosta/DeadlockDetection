@@ -9,7 +9,7 @@ import SwiftUI
 
 struct InputView: View {
     @State private var osTimerSet: String = ""
-    @State private var selectedResource: Int = 0
+    @State var selectedResource: Int = 0
     private var maxResources: Int = 10
 
     var body: some View {
@@ -53,8 +53,16 @@ struct InputView: View {
             }.padding()
 
             NavigationLink("") {
-                setResource().frame(width: 660, height: 464)
-            }.buttonStyle(StartButtonStyle(text: "Back", size: 18)).foregroundColor(.black).frame(width: 92, height: 48)
+                setResource(selectedResource: $selectedResource)
+                    .frame(width: 660, height: 464)
+
+            }.buttonStyle(StartButtonStyle(text: "Next", size: 18)).foregroundColor(.black).frame(width: 92, height: 48)
+                .simultaneousGesture(TapGesture().onEnded({ _ in
+                    OperationalSystem.shared.setTimeInterval(time: Int(osTimerSet) ?? 10)
+                    for _ in 0..<selectedResource {
+                        OperationalSystem.shared.resourceFactory()
+                    }
+                }))
         }.background(Color("DullPurple")).foregroundColor(.white)
     }
 

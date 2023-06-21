@@ -51,8 +51,9 @@ struct GraphView: View {
 
                             Spacer()
 
-                            Button {
-                                OS.processFactory(askTime: 4, useTime: 5)
+                            NavigationLink {
+                                setProcess()
+                                    .frame(width: 660, height: 464)
                             } label: {
                             }
                             .buttonStyle(StartButtonStyle(text: "Novo Processo", size: 24))
@@ -60,26 +61,11 @@ struct GraphView: View {
                                    height:geometry.size.width*0.06)
                             .foregroundColor(.black)
                             .padding(.horizontal)
-                            Button {
-                                OS.resourceFactory(name: "Impressora")
-                            } label: {
-                            }
-                            .buttonStyle(StartButtonStyle(text: "Novo Recurso", size: 24))
-                            .frame(width: geometry.size.width*0.14,
-                                   height:geometry.size.width*0.06)
-                            .foregroundColor(.black)
-                            .padding(.horizontal)
-                            Button {
-                                OS.resourceFactory(name: "Impressora")
-                            } label: {
-                            }
-                            .buttonStyle(StartButtonStyle(text: "Novo Recurso", size: 24))
-                            .frame(width: geometry.size.width*0.14,
-                                   height:geometry.size.width*0.06)
-                            .foregroundColor(.black)
-
-
+                            .simultaneousGesture(TapGesture().onEnded({ _ in
+                                OS.processFactory(askTime: 5, useTime: 5)
+                            }))
                             Spacer()
+
                             
                         }
                     }

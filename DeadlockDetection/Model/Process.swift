@@ -17,8 +17,8 @@ class Process: GraphNode, ObservableObject, Identifiable {
     @Published var currentResources = [(resource: Resource, time: Int)]()
     @Published var requestedResource: Resource?
     @Published var isSleeping: Bool = false
-    let askResourceTimeSpan: Double
-    let useResourceTimeSpan: Double
+    @Published var askResourceTimeSpan: Double
+    @Published var useResourceTimeSpan: Double
 
     
     func addResource(resource: Resource) {

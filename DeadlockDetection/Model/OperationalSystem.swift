@@ -46,8 +46,8 @@ class OperationalSystem: ObservableObject {
         return set
     }
     
-    func resourceFactory(name: String){
-        let resource = Resource(name: name)
+    func resourceFactory(){
+        let resource = Resource()
         self.resources.append(resource)
     }
     

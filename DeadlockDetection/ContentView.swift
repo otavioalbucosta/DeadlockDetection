@@ -24,7 +24,7 @@ struct ContentView: View {
                 }
             }
             Button {
-                OS.resourceFactory(name: "Impressora")
+                OS.resourceFactory()
             } label: {
                 Text("Criar Resource")
                     

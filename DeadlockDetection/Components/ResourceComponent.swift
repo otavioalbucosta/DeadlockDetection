@@ -13,7 +13,7 @@ struct ResourceComponent: View {
     var body: some View {
         GeometryReader{ geo in
             Circle().overlay {
-                Text(resource.id.description.prefix(5))
+                Text(resource.name)
                     .foregroundColor(.black)
                 
                 
@@ -32,10 +32,15 @@ struct ResourceComponent: View {
                 
             )
             
-//            ForEach(resource.next, id: \.id){ graph in
-//                CurvedLine(from: self.position, to: graph.position, control: CGPoint(x: self.position.x + graph.position.x, y: graph.position.y + self.position.y))
-//                    .stroke(lineWidth: 4)
-//            }
+            ForEach(resource.next, id: \.id){ graph in
+                Path { path in
+                    path.move(to: resource.position)
+                    path.addLine(to: graph.position)
+                    print(path.currentPoint)
+                }
+                .offsetBy(dx: geo.size.width*0.45, dy: 0)
+                .stroke(lineWidth: 4)
+            }
             
         }
     }
@@ -43,6 +48,6 @@ struct ResourceComponent: View {
 
 struct ResourceElement_Previews: PreviewProvider {
     static var previews: some View {
-        ResourceComponent( resource: Resource(name: "Impressora"))
+        ResourceComponent( resource: Resource())
     }
 }

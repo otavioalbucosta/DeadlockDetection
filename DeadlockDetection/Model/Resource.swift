@@ -14,7 +14,7 @@ class Resource: GraphNode, ObservableObject, Identifiable {
     var isVisited: Bool = false
     @Published var position: CGPoint = CGPoint(x: 200, y: 200)
 
-    var name: String
+    @Published var name: String = "?"
     var id = UUID()
     var isBeingUsed = DispatchSemaphore(value: 1)
     var beingRequestedBy = [Process]()
@@ -34,8 +34,11 @@ class Resource: GraphNode, ObservableObject, Identifiable {
         }
 
     }
-    
-    init(name: String) {
+
+    func setName(name: String) {
         self.name = name
+    }
+    
+    init() {
     }
 }
