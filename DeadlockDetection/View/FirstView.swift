@@ -24,6 +24,7 @@ struct FirstView: View {
                         .frame(alignment: .bottom)
 
                     VStack {
+                        Spacer()
                         Text("Deadlock Detection")
                             .font(.title).bold().foregroundColor(.white)
 
@@ -40,7 +41,11 @@ struct FirstView: View {
                         Spacer()
 
                         NavigationLink {
+                            #if os(macOS)
+                            InputView().frame(width: geometry.size.width*0.45, height: geometry.size.height*0.35)
+                            #elseif os(iOS)
                             GraphView()
+                            #endif
                         } label: {
                             
                         }   .buttonStyle(StartButtonStyle(text: "Começar")).foregroundColor(.black)

@@ -15,13 +15,15 @@ struct DeadlockDetectionApp: App {
     var body: some Scene {
         WindowGroup {
             FirstView()
-//                .alert("Insira o tempo de checagem de deadlock do OS", isPresented: $useAlert) {
-//                    TextField("Insira aqui", value: $quantity, formatter: NumberFormatter())
-//                    Button("Ok") {
-//                        submit(quantity: quantity)
-//                    }
-//                    .buttonStyle(.automatic)
-//                }
+            #if os(iOS)
+                .alert("Insira o tempo de checagem de deadlock do OS", isPresented: $useAlert) {
+                    TextField("Insira aqui", value: $quantity, formatter: NumberFormatter())
+                    Button("Ok") {
+                        submit(quantity: quantity)
+                    }
+                    .buttonStyle(.automatic)
+                }
+            #endif
         }
     }
 

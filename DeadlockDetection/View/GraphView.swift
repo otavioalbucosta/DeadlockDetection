@@ -20,7 +20,7 @@ struct GraphView: View {
                         RoundedRectangle(cornerRadius: 15).fill(Color("DarkerPurple")).overlay {
                                 ZStack {
                                     ForEach(OS.processes) { process in
-                                        ProcessComponent(IDProcess: String(process.id.description.prefix(5)), status: true, position: CGPoint(x: 200, y: 200))
+                                        ProcessComponent(IDProcess: String(process.id.description.prefix(5)), status: process.isSleeping, position: CGPoint(x: 200, y: 200))
                                             .frame(width: geometry.size.width*0.09,
                                                    height: geometry.size.height*0.15)
                                     }
@@ -30,9 +30,12 @@ struct GraphView: View {
                             VStack(alignment: .leading) {
                                 Group {
                                     Text("Tempo do sistema: \(OS.timeRemaining)")
-                                    Text("Ocorreu deadlock: \(OS.deadlockFound.description)")
-                                }.font(.body)
+                                    Text("Deadlock Detectado: \(OS.deadlockFound.description)")
+                                }.font(.body).padding(EdgeInsets(top: 8, leading: 16, bottom: 8, trailing: 16))
                             }.background(Color("DarkerPurple"))
+
+                            Spacer()
+
                             Button {
                                 OS.processFactory(askTime: 1, useTime: 5)
                             } label: {
@@ -41,7 +44,7 @@ struct GraphView: View {
                             .frame(width: geometry.size.width*0.14,
                                    height:geometry.size.width*0.06)
                             .foregroundColor(.black)
-                            .padding(.horizontal)
+
                             Spacer()
 
                         }

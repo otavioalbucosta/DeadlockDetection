@@ -16,7 +16,7 @@ struct ProcessComponent: View {
     var body: some View {
         GeometryReader { geometry in
             ZStack {
-                RoundedRectangle(cornerRadius: 20).fill(status ? Color.randomColor(): .gray)
+                RoundedRectangle(cornerRadius: 20).fill(status ? .gray : Color.randomColor())
                     .overlay {
                         VStack(alignment: .leading) {
                             Text(IDProcess)
@@ -47,21 +47,22 @@ struct ProcessComponent: View {
                         .padding(.all)
                         .foregroundColor(.black)
                     }
-                if status {
-                    ProcessStatusComponent().frame(width: geometry.size.width*0.25, height: geometry.size.width*0.25)
-                }
+                ProcessStatusComponent(locked: status)
+                        .frame(width: geometry.size.width*0.35,
+                               height: geometry.size.width*0.35)
+                        .position(CGPoint(x: geometry.size.width*0.9,
+                                          y: geometry.size.height*0.1 ))
             }
         }
+        .position(self.position)
+        .gesture(
+            DragGesture(minimumDistance: 0)
+                .onChanged({ value in
+                    self.position = value.location
+                    print(self.position)
+                })
 
-            .position(self.position)
-            .gesture(
-                DragGesture(minimumDistance: 0)
-                    .onChanged({ value in
-                        self.position = value.location
-                        print(self.position)
-                    })
-    
-            )
+        )
     }
 }
 
