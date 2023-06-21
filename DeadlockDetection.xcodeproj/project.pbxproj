@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		29371D8C2A4278F90062FF38 /* CurvedLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29371D8B2A4278F90062FF38 /* CurvedLine.swift */; };
 		2977A1EC2A2F9D96001BCC34 /* DeadlockDetectionApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2977A1EB2A2F9D96001BCC34 /* DeadlockDetectionApp.swift */; };
 		2977A1EE2A2F9D96001BCC34 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2977A1ED2A2F9D96001BCC34 /* ContentView.swift */; };
 		2977A1F02A2F9D98001BCC34 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2977A1EF2A2F9D98001BCC34 /* Assets.xcassets */; };
@@ -28,6 +29,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		29371D8B2A4278F90062FF38 /* CurvedLine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurvedLine.swift; sourceTree = "<group>"; };
 		2977A1E82A2F9D96001BCC34 /* DeadlockDetection.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DeadlockDetection.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2977A1EB2A2F9D96001BCC34 /* DeadlockDetectionApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeadlockDetectionApp.swift; sourceTree = "<group>"; };
 		2977A1ED2A2F9D96001BCC34 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -119,6 +121,7 @@
 				7ED557E12A428590009C3A35 /* InputView.swift */,
 				7ED557E32A42975F009C3A35 /* setResource.swift */,
 				7ED557CC2A41ACED009C3A35 /* GraphView.swift */,
+				29371D8B2A4278F90062FF38 /* CurvedLine.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -221,6 +224,7 @@
 				2977A1FB2A2F9E3E001BCC34 /* OperationalSystem.swift in Sources */,
 				7ED557DC2A422186009C3A35 /* ResourceComponent.swift in Sources */,
 				7ED557CD2A41ACED009C3A35 /* GraphView.swift in Sources */,
+				29371D8C2A4278F90062FF38 /* CurvedLine.swift in Sources */,
 				2977A2002A2F9EA6001BCC34 /* Process.swift in Sources */,
 				2977A1FE2A2F9E83001BCC34 /* Resource.swift in Sources */,
 				2977A1EE2A2F9D96001BCC34 /* ContentView.swift in Sources */,
