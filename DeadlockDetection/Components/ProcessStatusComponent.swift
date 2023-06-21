@@ -11,9 +11,10 @@ struct ProcessStatusComponent: View {
     var body: some View {
         GeometryReader { geometry in
             Circle()
-                .stroke(lineWidth: 1.0).shadow(radius: 3.0).foregroundColor(.white)
+                .stroke(lineWidth: 1.0)
+                .foregroundColor(.white)
                 .overlay {
-                    Circle().fill(.gray).overlay {
+                    Circle().fill(.gray).shadow(color: .black, radius: 4, x: -2, y: 2).overlay {
                         Image(systemName: "lock")
                             .resizable()
                             .aspectRatio(contentMode: .fit)

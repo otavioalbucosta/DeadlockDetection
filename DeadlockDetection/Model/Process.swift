@@ -10,7 +10,7 @@ class Process: GraphNode, ObservableObject, Identifiable {
 
     var next = [GraphNode]()
     var isVisited: Bool = false
-    var position: CGPoint = .zero
+    @Published var isSleeping: Bool = false
     
     var id = UUID()
     @Published var currentResources = [(resource: Resource, time: Int)]()
@@ -18,6 +18,15 @@ class Process: GraphNode, ObservableObject, Identifiable {
     let askResourceTimeSpan: Double
     let useResourceTimeSpan: Double
     
+    func addResource(resource: Resource) {
+        self.currentResources.append((resource: resource,time: Int(useResourceTimeSpan)))
+        self.next.append(resource)
+    }
+    
+    func removeResource(resource: Resource) {
+        self.currentResources.append((resource: resource,time: Int(useResourceTimeSpan)))
+        self.next.append(resource)
+    }
     func askNewResource() {
         
         if self.requestedResource == nil {
@@ -26,15 +35,14 @@ class Process: GraphNode, ObservableObject, Identifiable {
             }
             if let resource = availableResources.randomElement() {
                 self.requestedResource = resource
-                resource.beingRequestedBy.append(self)
-                resource.next.append(self)
+                resource.addProcess(process: self)
                 OperationalSystem.shared.updateView()
+                self.isSleeping = true
                 self.requestedResource!.isBeingUsed.wait()
-                resource.beingRequestedBy.removeAll(where: {$0.id == self.id})
-                resource.next.removeAll(where: {$0.id == self.id})
+                self.isSleeping = false
+                resource.removeProcess(process: self)
                 OperationalSystem.shared.updateView()
-                self.currentResources.append((resource: resource,time: Int(useResourceTimeSpan)))
-                self.next.append(resource)
+                addResource(resource: resource)
                 OperationalSystem.shared.updateView()
                 self.requestedResource = nil
                 OperationalSystem.shared.updateView()

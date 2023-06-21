@@ -10,11 +10,13 @@ import SwiftUI
 struct ProcessComponent: View {
     var IDProcess: String
     var status: Bool
+    
+    @State var position: CGPoint
 
     var body: some View {
         GeometryReader { geometry in
             ZStack {
-                RoundedRectangle(cornerRadius: 20).fill(Color.randomColor())
+                RoundedRectangle(cornerRadius: 20).fill(status ? Color.randomColor(): .gray)
                     .overlay {
                         VStack(alignment: .leading) {
                             Text(IDProcess)
@@ -51,12 +53,21 @@ struct ProcessComponent: View {
             }
         }
 
+            .position(self.position)
+            .gesture(
+                DragGesture(minimumDistance: 0)
+                    .onChanged({ value in
+                        self.position = value.location
+                        print(self.position)
+                    })
+    
+            )
     }
 }
 
 struct ProcessElement_Previews: PreviewProvider {
     static var previews: some View {
-        ProcessComponent(IDProcess: "HAHAHAHAHA", status: true)
+        ProcessComponent(IDProcess: "HAHAHAHAHA", status: true, position: CGPoint(x: 200, y: 200))
     }
 }
 
