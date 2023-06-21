@@ -78,6 +78,7 @@ struct GraphView: View {
                                    height:geometry.size.width*0.06)
                             .foregroundColor(.black)
 
+
                             Spacer()
                             
                         }

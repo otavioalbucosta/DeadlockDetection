@@ -15,8 +15,9 @@ struct ProcessComponent: View {
 
     var body: some View {
         GeometryReader { geometry in
-            ZStack {
+            ZStack {x
                 RoundedRectangle(cornerRadius: 20).fill(process.isSleeping ? .gray : Color.randomColor())
+
                     .overlay {
                         VStack(alignment: .leading) {
                             Text(process.id.description.prefix(5))
@@ -62,6 +63,7 @@ struct ProcessComponent: View {
                                height: geometry.size.width*0.35)
                         .position(CGPoint(x: geometry.size.width*0.9,
                                           y: geometry.size.height*0.1 ))
+
             }
             
         }
