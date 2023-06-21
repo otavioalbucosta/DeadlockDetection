@@ -8,18 +8,18 @@
 import SwiftUI
 
 struct ProcessComponent: View {
-    var IDProcess: String
-    var status: Bool
+    @StateObject var process: Process
     
     @State var position: CGPoint
+    
 
     var body: some View {
         GeometryReader { geometry in
             ZStack {
-                RoundedRectangle(cornerRadius: 20).fill(status ? .gray : Color.randomColor())
+                RoundedRectangle(cornerRadius: 20).fill(process.isSleeping ? .gray : Color.randomColor())
                     .overlay {
                         VStack(alignment: .leading) {
-                            Text(IDProcess)
+                            Text(process.id.description.prefix(5))
                                 .foregroundColor(.black)
                                 .font(.system(size: 18))
                                 .truncationMode(.tail)
@@ -46,29 +46,43 @@ struct ProcessComponent: View {
                         .frame(width: geometry.size.width*0.9)
                         .padding(.all)
                         .foregroundColor(.black)
+                        
+                        ForEach(process.next, id: \.id){ graph in
+                            Path { path in
+                                path.move(to: process.position)
+                                path.addLine(to: graph.position)
+                                print(path.currentPoint)
+                            }
+                            .offsetBy(dx: geometry.size.width*0.45, dy: 0)
+                            .stroke(lineWidth: 4)
+                        }
                     }
-                ProcessStatusComponent(locked: status)
+                ProcessStatusComponent(locked: process.isSleeping)
                         .frame(width: geometry.size.width*0.35,
                                height: geometry.size.width*0.35)
                         .position(CGPoint(x: geometry.size.width*0.9,
                                           y: geometry.size.height*0.1 ))
             }
+            
         }
-        .position(self.position)
-        .gesture(
-            DragGesture(minimumDistance: 0)
-                .onChanged({ value in
-                    self.position = value.location
-                    print(self.position)
-                })
-
-        )
+            .position(self.position)
+            .gesture(
+                DragGesture(minimumDistance: 0)
+                    .onChanged({ value in
+                        self.position = value.location
+                        print(self.position)
+                    })
+                    .onEnded({ value in
+                        self.process.position = value.location
+                    })
+    
+            )
     }
 }
 
 struct ProcessElement_Previews: PreviewProvider {
     static var previews: some View {
-        ProcessComponent(IDProcess: "HAHAHAHAHA", status: true, position: CGPoint(x: 200, y: 200))
+        ProcessComponent(process: Process(askResourceTimeSpan: 5, useResourceTimeSpan: 5),position: CGPoint(x: 200, y: 200) )
     }
 }
 

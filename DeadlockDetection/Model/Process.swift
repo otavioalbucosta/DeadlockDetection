@@ -8,25 +8,28 @@
 import Foundation
 class Process: GraphNode, ObservableObject, Identifiable {
 
-    var next = [GraphNode]()
+
+    @Published var next = [GraphNode]()
     var isVisited: Bool = false
-    @Published var isSleeping: Bool = false
+    @Published var position: CGPoint = CGPoint(x: 200, y: 200)
     
     var id = UUID()
     @Published var currentResources = [(resource: Resource, time: Int)]()
     @Published var requestedResource: Resource?
+    @Published var isSleeping: Bool = false
     let askResourceTimeSpan: Double
     let useResourceTimeSpan: Double
+
     
     func addResource(resource: Resource) {
-        self.currentResources.append((resource: resource,time: Int(useResourceTimeSpan)))
-        self.next.append(resource)
+        DispatchQueue.main.sync { [self] in
+            self.currentResources.append((resource: resource,time: Int(useResourceTimeSpan)))
+            self.next.append(resource)
+        }
+
     }
     
-    func removeResource(resource: Resource) {
-        self.currentResources.append((resource: resource,time: Int(useResourceTimeSpan)))
-        self.next.append(resource)
-    }
+
     func askNewResource() {
         
         if self.requestedResource == nil {
@@ -34,17 +37,27 @@ class Process: GraphNode, ObservableObject, Identifiable {
                 return !currentResources.contains(where: {$0.resource.id == element.id})
             }
             if let resource = availableResources.randomElement() {
-                self.requestedResource = resource
+                DispatchQueue.main.sync {
+                    self.requestedResource = resource
+                }
+
                 resource.addProcess(process: self)
                 OperationalSystem.shared.updateView()
-                self.isSleeping = true
+                DispatchQueue.main.sync {
+                    self.isSleeping = true
+                }
                 self.requestedResource!.isBeingUsed.wait()
-                self.isSleeping = false
+                DispatchQueue.main.sync {
+                    self.isSleeping = false
+                }
                 resource.removeProcess(process: self)
                 OperationalSystem.shared.updateView()
                 addResource(resource: resource)
                 OperationalSystem.shared.updateView()
-                self.requestedResource = nil
+                DispatchQueue.main.sync {
+                    self.requestedResource = nil
+                }
+
                 OperationalSystem.shared.updateView()
             }
         }
@@ -55,7 +68,10 @@ class Process: GraphNode, ObservableObject, Identifiable {
         
         for index in currentResources.indices.reversed() {
             if currentResources[index].time > 0 {
-                currentResources[index].time -= 1
+                DispatchQueue.main.sync {
+                    currentResources[index].time -= 1
+                }
+
                 print("Resource \(currentResources[index].resource.id.description.prefix(5)) sendo usada por \(self.id.description.prefix(5))! \(self.currentResources[index].time) segundos restantes")
             }
             else if currentResources[index].time <= 0 {
@@ -70,8 +86,11 @@ func freeResource() {
         if currentResources[index].time <= 0 {
             currentResources[index].resource.isBeingUsed.signal()
 
-            currentResources.remove(at: index)
-            self.next.remove(at: index)
+            DispatchQueue.main.sync {
+                currentResources.remove(at: index)
+                self.next.remove(at: index)
+            }
+
         }
     }
     OperationalSystem.shared.updateView()

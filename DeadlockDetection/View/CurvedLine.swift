@@ -24,7 +24,7 @@ struct CurvedLine: Shape {
     func path(in rect: CGRect) -> Path {
         var path = Path()
         path.move(to: from)
-        path.addQuadCurve(to: to, control: control)
+        path.addLine(to: to)
         
         let angle = atan2(to.y - control.y, to.x - control.x)
         let arrowLength: CGFloat = 15
@@ -42,6 +42,7 @@ struct CurvedLine: Shape {
 
 struct CurvedLine_Previews: PreviewProvider {
     static var previews: some View {
-        CurvedLine()
+        CurvedLine(from: CGPoint(x: 200, y: 200), to: CGPoint(x:100, y:100), control: CGPoint(x: 500 , y: 500))
+            .stroke(lineWidth: 4)
     }
 }

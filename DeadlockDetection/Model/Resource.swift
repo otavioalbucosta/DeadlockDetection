@@ -8,9 +8,11 @@
 import Foundation
 class Resource: GraphNode, ObservableObject, Identifiable {
 
-    var next: [GraphNode] = []
-    var isVisited: Bool = false
+    
 
+   @Published var next: [GraphNode] = []
+    var isVisited: Bool = false
+    @Published var position: CGPoint = CGPoint(x: 200, y: 200)
 
     var name: String
     var id = UUID()
@@ -18,13 +20,19 @@ class Resource: GraphNode, ObservableObject, Identifiable {
     var beingRequestedBy = [Process]()
     
     func addProcess(process: Process){
-        self.beingRequestedBy.append(process)
-        self.next.append(process)
+        DispatchQueue.main.sync {
+            self.beingRequestedBy.append(process)
+            self.next.append(process)
+        }
+
     }
     
     func removeProcess(process: Process) {
-        self.beingRequestedBy.removeAll(where: {$0.id == process.id})
-        self.next.removeAll(where: {$0.id == process.id})
+        DispatchQueue.main.sync {
+            self.beingRequestedBy.removeAll(where: {$0.id == process.id})
+            self.next.removeAll(where: {$0.id == process.id})
+        }
+
     }
     
     init(name: String) {

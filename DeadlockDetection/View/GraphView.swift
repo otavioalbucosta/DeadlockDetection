@@ -9,7 +9,7 @@ import SwiftUI
 
 struct GraphView: View {
     @StateObject var OS = OperationalSystem.shared
-
+    
     var columns: [GridItem] = Array(repeating: .init(.flexible()), count: 2)
     var body: some View {
         GeometryReader { geometry in
@@ -17,15 +17,30 @@ struct GraphView: View {
                 Text("Deadlock Detection").font(.title).bold()
                 HStack {
                     VStack(alignment: .center) {
-                        RoundedRectangle(cornerRadius: 15).fill(Color("DarkerPurple")).overlay {
+                        GeometryReader{ proxy in
+                            RoundedRectangle(cornerRadius: 15).fill(Color("DarkerPurple")).overlay {
                                 ZStack {
+                                    
                                     ForEach(OS.processes) { process in
-                                        ProcessComponent(IDProcess: String(process.id.description.prefix(5)), status: process.isSleeping, position: CGPoint(x: 200, y: 200))
+                                        ProcessComponent(process: process, position: CGPoint(x: 0 , y: 0))
+                                            .frame(width: geometry.size.width*0.09,
+                                                   height: geometry.size.height*0.15)
+                                        
+                                        
+                                        
+                                    }
+                                    
+                                    
+                                    ForEach(OS.resources) { resource in
+                                        ResourceComponent(resource: resource, position: CGPoint(x: 200, y: 200))
                                             .frame(width: geometry.size.width*0.09,
                                                    height: geometry.size.height*0.15)
                                     }
                                 }
+                            }
+                            
                         }
+                        
                         HStack(alignment: .center) {
                             VStack(alignment: .leading) {
                                 Group {
@@ -37,16 +52,34 @@ struct GraphView: View {
                             Spacer()
 
                             Button {
-                                OS.processFactory(askTime: 1, useTime: 5)
+                                OS.processFactory(askTime: 4, useTime: 5)
                             } label: {
                             }
                             .buttonStyle(StartButtonStyle(text: "Novo Processo", size: 24))
                             .frame(width: geometry.size.width*0.14,
                                    height:geometry.size.width*0.06)
                             .foregroundColor(.black)
+                            .padding(.horizontal)
+                            Button {
+                                OS.resourceFactory(name: "Impressora")
+                            } label: {
+                            }
+                            .buttonStyle(StartButtonStyle(text: "Novo Recurso", size: 24))
+                            .frame(width: geometry.size.width*0.14,
+                                   height:geometry.size.width*0.06)
+                            .foregroundColor(.black)
+                            .padding(.horizontal)
+                            Button {
+                                OS.resourceFactory(name: "Impressora")
+                            } label: {
+                            }
+                            .buttonStyle(StartButtonStyle(text: "Novo Recurso", size: 24))
+                            .frame(width: geometry.size.width*0.14,
+                                   height:geometry.size.width*0.06)
+                            .foregroundColor(.black)
 
                             Spacer()
-
+                            
                         }
                     }
                     RoundedRectangle(cornerRadius: 15).fill(Color("DarkerPurple"))
@@ -58,7 +91,7 @@ struct GraphView: View {
 }
 
 struct GraphVIew_Previews: PreviewProvider {
-
+    
     static var previews: some View {
         GraphView()
     }
