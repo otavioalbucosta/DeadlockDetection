@@ -9,43 +9,54 @@ import SwiftUI
 
 struct ProcessComponent: View {
     var IDProcess: String
+    var status: Bool
 
     var body: some View {
-        RoundedRectangle(cornerRadius: 20)
-            .overlay {
-                VStack(alignment: .leading) {
-                    Text(IDProcess)
-                        .foregroundColor(.black)
-                        .font(.system(size: 18))
+        GeometryReader { geometry in
+            ZStack {
+                RoundedRectangle(cornerRadius: 20).fill(Color.randomColor())
+                    .overlay {
+                        VStack(alignment: .leading) {
+                            Text(IDProcess)
+                                .foregroundColor(.black)
+                                .font(.system(size: 18))
+                                .truncationMode(.tail)
 
-                    Text("Status do processo")
-                        .foregroundColor(.black)
-                        .font(.system(size: 9))
-                    Spacer()
+                            Text("Status do processo")
+                                .foregroundColor(.black)
+                                .font(.system(size: 8))
 
-                    HStack {
-                        Text("tempo de espera ")
-                        Spacer()
-                        Text("x segundos")
+                            Spacer()
+
+                            HStack {
+                                Text("tempo de espera ")
+                                    .foregroundColor(.black)
+                                    .multilineTextAlignment(.leading)
+                                    .font(.system(size: 8))
+                                
+                                Spacer()
+                                Text("12 s")
+                                    .multilineTextAlignment(.trailing)
+                                    .foregroundColor(.black)
+                                    .font(.system(size: 15)).bold()
+                            }
+                        }
+                        .frame(width: geometry.size.width*0.9)
+                        .padding(.all)
+                        .foregroundColor(.black)
                     }
-
+                if status {
+                    ProcessStatusComponent().frame(width: geometry.size.width*0.25, height: geometry.size.width*0.25)
                 }
-                .padding()
-                .foregroundColor(.black)
-                .background(.blue.opacity(0.2))
-
-                //                Circle()
-                //                    .overlay {
-                //                        Image(systemName: "lock.circle").foregroundColor(.black)
-                //                    }
-                //                    .frame(maxWidth: geo.size.width*0.25)
             }
+        }
+
     }
 }
 
 struct ProcessElement_Previews: PreviewProvider {
     static var previews: some View {
-        ProcessComponent(IDProcess: "HAHAHAHAHA")
+        ProcessComponent(IDProcess: "HAHAHAHAHA", status: true)
     }
 }
 

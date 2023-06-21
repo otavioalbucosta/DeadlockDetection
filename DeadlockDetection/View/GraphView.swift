@@ -21,17 +21,18 @@ struct GraphView: View {
                             GeometryReader { geo in
                                 ZStack {
                                     ForEach(OS.processes) { process in
-                                        ProcessComponent(IDProcess: process.id.description)
-                                            .frame(width: 100, height: 100)
-                                            .position(CGPoint(x: 200, y: 200))
-                                            .gesture(
-                                                DragGesture(minimumDistance: 0)
-                                                    .onChanged { value in
-                                                        process.position = value.location
-
-                                                        print(value.location)
-                                                    }
-                                            )
+                                        ProcessComponent(IDProcess: String(process.id.description.prefix(5)), status: false)
+                                            .frame(width: geometry.size.width*0.09, height: geometry.size.height*0.15)
+                                            .position(x: 200, y: 200)
+//                                            .position(process.position)
+//                                            .gesture(
+//                                                DragGesture(minimumDistance: 0)
+//                                                    .onChanged { value in
+//                                                        process.position = value.location
+//
+//                                                        print(value.location)
+//                                                    }
+//                                            )
                                     }
                                 }
                             }

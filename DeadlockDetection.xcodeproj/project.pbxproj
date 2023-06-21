@@ -22,6 +22,7 @@
 		7ED557CD2A41ACED009C3A35 /* GraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ED557CC2A41ACED009C3A35 /* GraphView.swift */; };
 		7ED557CF2A41B12D009C3A35 /* ProcessComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ED557CE2A41B12D009C3A35 /* ProcessComponent.swift */; };
 		7ED557DC2A422186009C3A35 /* ResourceComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ED557DB2A422186009C3A35 /* ResourceComponent.swift */; };
+		7ED557E02A426C3C009C3A35 /* ProcessStatusComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ED557DF2A426C3C009C3A35 /* ProcessStatusComponent.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +43,7 @@
 		7ED557CC2A41ACED009C3A35 /* GraphView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphView.swift; sourceTree = "<group>"; };
 		7ED557CE2A41B12D009C3A35 /* ProcessComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProcessComponent.swift; sourceTree = "<group>"; };
 		7ED557DB2A422186009C3A35 /* ResourceComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourceComponent.swift; sourceTree = "<group>"; };
+		7ED557DF2A426C3C009C3A35 /* ProcessStatusComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProcessStatusComponent.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -128,6 +130,7 @@
 			children = (
 				2977A20B2A3FF1A2001BCC34 /* GraphComponent.swift */,
 				7ED557CE2A41B12D009C3A35 /* ProcessComponent.swift */,
+				7ED557DF2A426C3C009C3A35 /* ProcessStatusComponent.swift */,
 				7ED557DB2A422186009C3A35 /* ResourceComponent.swift */,
 				7ED557C92A411CA4009C3A35 /* StartButtonComponent.swift */,
 			);
@@ -207,6 +210,7 @@
 				7ED557C82A410118009C3A35 /* Extension.swift in Sources */,
 				2977A2022A361B72001BCC34 /* Graph.swift in Sources */,
 				7ED557CA2A411CA4009C3A35 /* StartButtonComponent.swift in Sources */,
+				7ED557E02A426C3C009C3A35 /* ProcessStatusComponent.swift in Sources */,
 				2977A1FB2A2F9E3E001BCC34 /* OperationalSystem.swift in Sources */,
 				7ED557DC2A422186009C3A35 /* ResourceComponent.swift in Sources */,
 				7ED557CD2A41ACED009C3A35 /* GraphView.swift in Sources */,
