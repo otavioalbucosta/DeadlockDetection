@@ -9,6 +9,8 @@ import SwiftUI
 
 struct ProcessComponent: View {
     var IDProcess: String
+    
+    @State var position: CGPoint
 
     var body: some View {
         RoundedRectangle(cornerRadius: 20)
@@ -40,12 +42,21 @@ struct ProcessComponent: View {
                 //                    }
                 //                    .frame(maxWidth: geo.size.width*0.25)
             }
+            .position(self.position)
+            .gesture(
+                DragGesture(minimumDistance: 0)
+                    .onChanged({ value in
+                        self.position = value.location
+                        print(self.position)
+                    })
+    
+            )
     }
 }
 
 struct ProcessElement_Previews: PreviewProvider {
     static var previews: some View {
-        ProcessComponent(IDProcess: "HAHAHAHAHA")
+        ProcessComponent(IDProcess: "HAHAHAHAHA", position: CGPoint(x: 200, y: 200))
     }
 }
 
